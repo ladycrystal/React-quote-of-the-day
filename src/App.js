@@ -1,23 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState, useEffect } from "react";
 
 function App() {
+  const [quote, setQuote] = useState({
+    text: "The only way to do great work is to love what you do.",
+    author: "Steve Jobs",
+  });
+  const fetchQuote = async () => {
+    try {
+      const response = await fetch("/api/random");
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log(data);
+      setQuote({
+        text: data[0].q,
+        author: data[0].a,
+      });
+    } catch (error) {
+      console.error("Error fetching quote:", error);
+      setQuote({
+        text: "Failed to fetch a new quote.",
+        author: "",
+      });
+    }
+  };
+
+  useEffect(() => {
+    fetchQuote();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="app-container">
+      <header>
+        <h1>Quote of the Day</h1>
       </header>
+
+      <main className="quote-card">
+        <div className="quote-text">
+          <p>{quote.text}</p>
+        </div>
+
+        <div className="quote-author">
+          <p>- {quote.author}</p>
+        </div>
+
+        <button onClick={fetchQuote}>Get New Quote</button>
+      </main>
     </div>
   );
 }
