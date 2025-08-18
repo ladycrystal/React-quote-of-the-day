@@ -1,14 +1,19 @@
 exports.handler = async (event, context) => {
+  console.log('Function called with event:', event);
+  
   try {
     const fetch = (await import('node-fetch')).default;
     
+    console.log('Fetching from ZenQuotes API...');
     const response = await fetch('https://zenquotes.io/api/random');
     
     if (!response.ok) {
+      console.error(`API response not OK: ${response.status}`);
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     
     const data = await response.json();
+    console.log('API data received:', data);
     
     return {
       statusCode: 200,
