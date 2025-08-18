@@ -46,6 +46,5 @@
     "singleQuote": true,
     "trailingComma": "es5",
     "printWidth": 80
-  },
-  "proxy": "https://zenquotes.io"
+  }
 }

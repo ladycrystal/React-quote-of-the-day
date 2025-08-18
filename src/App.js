@@ -8,7 +8,7 @@ function App() {
   });
   const fetchQuote = async () => {
     try {
-      const response = await fetch("/api/random");
+      const response = await fetch("/.netlify/functions/quotes");
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
