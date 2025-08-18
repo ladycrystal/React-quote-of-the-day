@@ -39,3 +39,5 @@ This project uses the [ZenQuotes API](https://zenquotes.io/) to get the quote da
 The application will be available at `http://localhost:3000`.
 
 ---
+## 🚀 Live Demo
+Click here to view the project: [Live Project](https://ladysquoteoftheday.netlify.app/)
