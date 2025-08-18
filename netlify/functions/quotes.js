@@ -2,7 +2,7 @@ exports.handler = async (event, context) => {
   console.log('Function called with event:', event);
   
   try {
-    const fetch = (await import('node-fetch')).default;
+  // const fetch = (await import('node-fetch')).default;
     
     console.log('Fetching from ZenQuotes API...');
     const response = await fetch('https://zenquotes.io/api/random');
